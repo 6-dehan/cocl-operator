@@ -107,6 +107,7 @@ type TrustedExecutionClusterList struct {
 // MachineSpec defines the desired state of Machine
 type MachineSpec struct {
 	// Machine ID, typically a UUID
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	Id *string `json:"id"`
 	// Machine address
 	Address *string `json:"address"`
