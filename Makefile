@@ -127,7 +127,7 @@ clean:
 
 fmt-check:
 	cargo fmt -- --check
-	gofmt -l .
+	if [ "$$(gofmt -l .)" ]; then exit 1; fi
 
 clippy: crds-rs
 	cargo clippy --all-targets --all-features -- -D warnings
