@@ -6,7 +6,7 @@ package v1alpha1
 
 const (
 	InstalledCondition string = "Installed"
-	InstalledReason string = "Installed"
+	InstalledReason string = "InstallationCompleted"
 	NotInstalledReasonNonUnique string = "NonUnique"
 	NotInstalledReasonInstalling string = "Installing"
 	NotInstalledReasonUninstalling string = "Uninstalling"

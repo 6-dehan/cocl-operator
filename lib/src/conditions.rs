@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 pub const INSTALLED_CONDITION: &str = "Installed";
-pub const INSTALLED_REASON: &str = "Installed";
+pub const INSTALLED_REASON: &str = "InstallationCompleted";
 pub const NOT_INSTALLED_REASON_NON_UNIQUE: &str = "NonUnique";
 pub const NOT_INSTALLED_REASON_INSTALLING: &str = "Installing";
 pub const NOT_INSTALLED_REASON_UNINSTALLING: &str = "Uninstalling";
