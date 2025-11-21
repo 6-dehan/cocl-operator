@@ -9,9 +9,9 @@
 package v1alpha1
 
 import (
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"sigs.k8s.io/controller-runtime/pkg/scheme"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 var (
@@ -40,30 +40,30 @@ var (
 // +kubebuilder:validation:XValidation:rule="!has(oldSelf.publicTrusteeAddr) || has(self.publicTrusteeAddr)", message="Value is required once set"
 type TrustedExecutionClusterSpec struct {
 	// Image reference to Trustee all-in-one image
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	TrusteeImage *string `json:"trusteeImage"`
 
 	// Image reference to trusted-cluster-operator's compute-pcrs image
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	PcrsComputeImage *string `json:"pcrsComputeImage"`
 
 	// Image reference to trusted-cluster-operator's register-server image
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	RegisterServerImage *string `json:"registerServerImage"`
 
 	// Address where attester can connect to Trustee
 	// +optional
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	PublicTrusteeAddr *string `json:"publicTrusteeAddr,omitempty"`
 
 	// Port that Trustee serves on
 	// +optional
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	TrusteeKbsPort int32 `json:"trusteeKbsPort,omitempty"`
 
 	// Port that trusted-cluster-operator's register-server serves on
 	// +optional
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	RegisterServerPort int32 `json:"registerServerPort,omitempty"`
 }
 
