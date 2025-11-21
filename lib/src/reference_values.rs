@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use chrono::{DateTime, Utc};
 use compute_pcrs_lib::Pcr;
+use k8s_openapi::chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 

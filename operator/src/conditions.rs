@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use chrono::Utc;
 use k8s_openapi::apimachinery::pkg::apis::meta::v1::{Condition, Time};
+use k8s_openapi::chrono::Utc;
 use trusted_cluster_operator_lib::{condition_status, conditions::*};
 
 pub fn known_trustee_address_condition(known: bool, generation: Option<i64>) -> Condition {

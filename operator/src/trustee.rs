@@ -6,7 +6,6 @@
 
 use anyhow::{Context, Result};
 use base64::{Engine as _, engine::general_purpose};
-use chrono::{DateTime, TimeDelta, Utc};
 use clevis_pin_trustee_lib::Key as ClevisKey;
 use k8s_openapi::api::apps::v1::{Deployment, DeploymentSpec};
 use k8s_openapi::api::core::v1::{
@@ -18,6 +17,7 @@ use k8s_openapi::apimachinery::pkg::{
     apis::meta::v1::{LabelSelector, OwnerReference},
     util::intstr::IntOrString,
 };
+use k8s_openapi::chrono::{DateTime, TimeDelta, Utc};
 use kube::{Api, Client, Resource, api::ObjectMeta};
 use log::info;
 use operator::{RvContextData, create_or_info_if_exists};

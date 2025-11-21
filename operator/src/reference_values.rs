@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::{Context, Result, anyhow};
-use chrono::Utc;
 use compute_pcrs_lib::Pcr;
 use futures_util::StreamExt;
 use k8s_openapi::{
@@ -16,6 +15,7 @@ use k8s_openapi::{
         },
     },
     apimachinery::pkg::apis::meta::v1::OwnerReference,
+    chrono::Utc,
 };
 use kube::api::{DeleteParams, ObjectMeta};
 use kube::runtime::{

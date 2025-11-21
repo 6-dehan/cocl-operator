@@ -4,10 +4,9 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::{Context, Result};
-use chrono::Utc;
 use clap::Parser;
 use compute_pcrs_lib::*;
-use k8s_openapi::api::core::v1::ConfigMap;
+use k8s_openapi::{api::core::v1::ConfigMap, chrono::Utc};
 use kube::{Api, Client};
 
 use trusted_cluster_operator_lib::{conditions::INSTALLED_REASON, reference_values::*, *};

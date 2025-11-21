@@ -199,9 +199,8 @@ async fn main() -> Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use chrono::Utc;
     use http::{Method, Request, StatusCode};
-    use k8s_openapi::apimachinery::pkg::apis::meta::v1::Time;
+    use k8s_openapi::{apimachinery::pkg::apis::meta::v1::Time, chrono::Utc};
     use kube::{api::ObjectList, client::Body};
     use trusted_cluster_operator_lib::TrustedExecutionClusterSpec;
 
