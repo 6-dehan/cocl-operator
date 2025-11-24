@@ -6,19 +6,16 @@
 use std::sync::Arc;
 use std::time::Duration;
 
-use anyhow::{Context, Result};
+use anyhow::Result;
 use env_logger::Env;
 use futures_util::StreamExt;
-use k8s_openapi::apimachinery::pkg::apis::meta::v1::{Condition, OwnerReference};
-use kube::{Api, Client, Resource};
-use kube::{
-    api::ObjectMeta,
-    runtime::{
-        controller::{Action, Controller},
-        watcher,
-    },
-};
+use k8s_openapi::apimachinery::pkg::apis::meta::v1::Condition;
+use kube::runtime::controller::{Action, Controller};
+use kube::runtime::watcher;
+use kube::{Api, Client};
 use log::{error, info, warn};
+
+use operator::generate_owner_reference;
 use trusted_cluster_operator_lib::{TrustedExecutionCluster, TrustedExecutionClusterStatus};
 use trusted_cluster_operator_lib::{conditions::*, update_status};
 
@@ -97,24 +94,11 @@ async fn reconcile(
     Ok(Action::await_change())
 }
 
-fn generate_owner_reference(metadata: &ObjectMeta) -> Result<OwnerReference> {
-    let name = metadata.name.clone();
-    let uid = metadata.uid.clone();
-    Ok(OwnerReference {
-        api_version: TrustedExecutionCluster::api_version(&()).to_string(),
-        block_owner_deletion: Some(true),
-        controller: Some(true),
-        kind: TrustedExecutionCluster::kind(&()).to_string(),
-        name: name.context("TrustedExecutionCluster had no name")?,
-        uid: uid.context("TrustedExecutionCluster had no UID")?,
-    })
-}
-
 async fn install_trustee_configuration(
     client: Client,
     cluster: &TrustedExecutionCluster,
 ) -> Result<()> {
-    let owner_reference = generate_owner_reference(&cluster.metadata)?;
+    let owner_reference = generate_owner_reference(cluster)?;
 
     match trustee::generate_trustee_data(client.clone(), owner_reference.clone()).await {
         Ok(_) => info!("Generate configmap for the KBS configuration",),
@@ -154,7 +138,7 @@ async fn install_trustee_configuration(
 }
 
 async fn install_register_server(client: Client, cluster: &TrustedExecutionCluster) -> Result<()> {
-    let owner_reference = generate_owner_reference(&cluster.metadata)?;
+    let owner_reference = generate_owner_reference(cluster)?;
 
     match register_server::create_register_server_deployment(
         client.clone(),
@@ -201,7 +185,8 @@ async fn main() -> Result<()> {
 mod tests {
     use http::{Method, Request, StatusCode};
     use k8s_openapi::{apimachinery::pkg::apis::meta::v1::Time, chrono::Utc};
-    use kube::{api::ObjectList, client::Body};
+    use kube::api::{ObjectList, ObjectMeta};
+    use kube::client::Body;
     use trusted_cluster_operator_lib::TrustedExecutionClusterSpec;
 
     use super::*;
