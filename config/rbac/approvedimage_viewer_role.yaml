@@ -15,12 +15,12 @@ metadata:
   labels:
     app.kubernetes.io/name: trusted-cluster-operator
     app.kubernetes.io/managed-by: kustomize
-  name: trustedexecutioncluster-viewer-role
+  name: approvedimage-viewer-role
 rules:
 - apiGroups:
   - trusted-execution-clusters.io
   resources:
-  - trustedexecutionclusters
+  - approvedimages
   verbs:
   - get
   - list
@@ -28,6 +28,6 @@ rules:
 - apiGroups:
   - trusted-execution-clusters.io
   resources:
-  - trustedexecutionclusters/status
+  - approvedimages/status
   verbs:
   - get

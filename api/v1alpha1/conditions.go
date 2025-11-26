@@ -6,7 +6,7 @@ package v1alpha1
 
 const (
 	InstalledCondition string = "Installed"
-	InstalledReason string = "Installed"
+	InstalledReason string = "InstallationCompleted"
 	NotInstalledReasonNonUnique string = "NonUnique"
 	NotInstalledReasonInstalling string = "Installing"
 	NotInstalledReasonUninstalling string = "Uninstalling"
@@ -14,4 +14,10 @@ const (
 	KnownTrusteeAddressCondition string = "KnownTrusteeAddress"
 	KnownTrusteeAddressReason string = "AddressFound"
 	UnknownTrusteeAddressReason string = "NoAddressFound"
+
+	CommittedCondition string = "Committed"
+	CommittedReason string = "ImageCommitted"
+	NotCommittedReasonComputing string = "Computing"
+	NotCommittedReasonNoDigest string = "NoDigestGiven"
+	NotCommittedReasonFailed string = "ComputationFailed"
 )
