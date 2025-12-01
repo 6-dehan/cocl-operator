@@ -358,9 +358,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.5.52"
+version = "4.5.53"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aa8120877db0e5c011242f96806ce3c94e0737ab8108532a76a3300a01db2ab8"
+checksum = "c9e340e012a1bf4935f5282ed1436d1489548e8f72308207ea5df0e23d2d03f8"
 dependencies = [
  "clap_builder",
  "clap_derive",
@@ -368,9 +368,9 @@ dependencies = [
 
 [[package]]
 name = "clap_builder"
-version = "4.5.52"
+version = "4.5.53"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "02576b399397b659c26064fbc92a75fede9d18ffd5f80ca1cd74ddab167016e1"
+checksum = "d76b5d13eaa18c901fd2f7fca939fefe3a0727a953561fefdf3b2922b8569d00"
 dependencies = [
  "anstream",
  "anstyle",
@@ -399,7 +399,7 @@ checksum = "a1d728cc89cf3aee9ff92b05e62b19ee65a02b5702cff7d5a377e32c6ae29d8d"
 [[package]]
 name = "clevis-pin-trustee-lib"
 version = "0.1.0"
-source = "git+https://github.com/latchset/clevis-pin-trustee#5ebcdba39916c9335dfd26aa5882e7fc29597944"
+source = "git+https://github.com/latchset/clevis-pin-trustee#a605f02d98fa009d8c90e93846947455794c1210"
 dependencies = [
  "serde",
 ]
@@ -428,7 +428,7 @@ dependencies = [
 [[package]]
 name = "compute-pcrs-lib"
 version = "0.1.0"
-source = "git+https://github.com/trusted-execution-clusters/compute-pcrs#8796ce3547db464fcfb0c11d29e0f2b89aa94a1d"
+source = "git+https://github.com/trusted-execution-clusters/compute-pcrs#08e561cf527c3e328f2aab7262d34a66cac06fa3"
 dependencies = [
  "anyhow",
  "glob",
@@ -1276,12 +1276,11 @@ dependencies = [
 
 [[package]]
 name = "http"
-version = "1.3.1"
+version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f4a85d31aea989eead29a3aaf9e1115a180df8282431156e533de47660892565"
+checksum = "e3ba2a386d7f85a81f119ad7498ebe444d2e22c2af0b86b069416ace48b3311a"
 dependencies = [
  "bytes",
- "fnv",
  "itoa",
 ]
 
@@ -1312,7 +1311,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1efedce1fb8e6913f23e0c92de8e62cd5b772a67e7b3946df930a62566c93184"
 dependencies = [
  "bytes",
- "http 1.3.1",
+ "http 1.4.0",
 ]
 
 [[package]]
@@ -1323,7 +1322,7 @@ checksum = "b021d93e26becf5dc7e1b75b1bed1fd93124b374ceb73f43d4d4eafec896a64a"
 dependencies = [
  "bytes",
  "futures-core",
- "http 1.3.1",
+ "http 1.4.0",
  "http-body 1.0.1",
  "pin-project-lite",
 ]
@@ -1374,7 +1373,7 @@ dependencies = [
  "bytes",
  "futures-channel",
  "futures-core",
- "http 1.3.1",
+ "http 1.4.0",
  "http-body 1.0.1",
  "httparse",
  "itoa",
@@ -1391,7 +1390,7 @@ version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "527d4d619ca2c2aafa31ec139a3d1d60bf557bf7578a1f20f743637eccd9ca19"
 dependencies = [
- "http 1.3.1",
+ "http 1.4.0",
  "hyper 1.7.0",
  "hyper-util",
  "linked_hash_set",
@@ -1458,7 +1457,7 @@ dependencies = [
  "futures-channel",
  "futures-core",
  "futures-util",
- "http 1.3.1",
+ "http 1.4.0",
  "http-body 1.0.1",
  "hyper 1.7.0",
  "ipnet",
@@ -1832,7 +1831,7 @@ dependencies = [
  "either",
  "futures",
  "home",
- "http 1.3.1",
+ "http 1.4.0",
  "http-body 1.0.1",
  "http-body-util",
  "hyper 1.7.0",
@@ -1865,7 +1864,7 @@ dependencies = [
  "chrono",
  "derive_more",
  "form_urlencoded",
- "http 1.3.1",
+ "http 1.4.0",
  "json-patch",
  "k8s-openapi",
  "schemars",
@@ -2238,7 +2237,7 @@ dependencies = [
  "bytes",
  "chrono",
  "futures-util",
- "http 1.3.1",
+ "http 1.4.0",
  "http-auth",
  "jwt",
  "lazy_static",
@@ -2351,7 +2350,7 @@ dependencies = [
  "env_logger",
  "futures-util",
  "hex",
- "http 1.3.1",
+ "http 1.4.0",
  "json-patch",
  "jsonptr",
  "k8s-openapi",
@@ -2854,7 +2853,7 @@ dependencies = [
  "bytes",
  "futures-core",
  "futures-util",
- "http 1.3.1",
+ "http 1.4.0",
  "http-body 1.0.1",
  "http-body-util",
  "hyper 1.7.0",
@@ -3709,7 +3708,7 @@ dependencies = [
  "bitflags 2.10.0",
  "bytes",
  "futures-util",
- "http 1.3.1",
+ "http 1.4.0",
  "http-body 1.0.1",
  "iri-string",
  "mime",
@@ -3827,7 +3826,7 @@ dependencies = [
  "byteorder",
  "bytes",
  "data-encoding",
- "http 1.3.1",
+ "http 1.4.0",
  "httparse",
  "log",
  "rand",
