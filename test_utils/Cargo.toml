@@ -16,7 +16,7 @@ anyhow.workspace = true
 trusted-cluster-operator-lib = { path = "../lib" }
 compute-pcrs-lib.workspace = true
 env_logger.workspace = true
-ignition-config = "0.5.0"
+ignition-config.workspace = true
 k8s-openapi.workspace = true
 kube = { workspace = true }
 log.workspace = true
