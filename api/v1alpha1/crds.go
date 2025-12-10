@@ -9,9 +9,9 @@
 package v1alpha1
 
 import (
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"sigs.k8s.io/controller-runtime/pkg/scheme"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 var (
@@ -32,7 +32,8 @@ var (
 // +kubebuilder:rbac:groups=batch,resources=jobs,verbs=create;delete;list;watch
 // +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=trustedexecutionclusters,verbs=list;watch
 // +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=trustedexecutionclusters/status,verbs=patch
-// +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=machines,verbs=create;list;delete;watch
+// +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=machines,verbs=create;list;delete;watch;patch
+// +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=machines/status,verbs=get;update
 // +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=approvedimages,verbs=get;list;watch;patch
 // +kubebuilder:rbac:groups=trusted-execution-clusters.io,resources=approvedimages/status,verbs=patch
 
@@ -40,30 +41,30 @@ var (
 // +kubebuilder:validation:XValidation:rule="!has(oldSelf.publicTrusteeAddr) || has(self.publicTrusteeAddr)", message="Value is required once set"
 type TrustedExecutionClusterSpec struct {
 	// Image reference to Trustee all-in-one image
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
-	TrusteeImage *string `json:"trusteeImage"`
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	TrusteeImage string `json:"trusteeImage"`
 
 	// Image reference to trusted-cluster-operator's compute-pcrs image
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
-	PcrsComputeImage *string `json:"pcrsComputeImage"`
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	PcrsComputeImage string `json:"pcrsComputeImage"`
 
 	// Image reference to trusted-cluster-operator's register-server image
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
-	RegisterServerImage *string `json:"registerServerImage"`
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	RegisterServerImage string `json:"registerServerImage"`
 
 	// Address where attester can connect to Trustee
 	// +optional
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	PublicTrusteeAddr *string `json:"publicTrusteeAddr,omitempty"`
 
 	// Port that Trustee serves on
 	// +optional
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	TrusteeKbsPort int32 `json:"trusteeKbsPort,omitempty"`
 
 	// Port that trusted-cluster-operator's register-server serves on
 	// +optional
-  // +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	RegisterServerPort int32 `json:"registerServerPort,omitempty"`
 }
 
@@ -107,9 +108,8 @@ type TrustedExecutionClusterList struct {
 // MachineSpec defines the desired state of Machine
 type MachineSpec struct {
 	// Machine ID, typically a UUID
-	Id *string `json:"id"`
-	// Machine address
-	Address *string `json:"address"`
+	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
+	Id string `json:"id"`
 }
 
 // MachineStatus defines the observed state of Machine.
@@ -118,6 +118,9 @@ type MachineStatus struct {
 	// +listMapKey=type
 	// +optional
 	Conditions []metav1.Condition `json:"conditions,omitempty"`
+	// Machine address
+	// +optional
+	Address *string `json:"address,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -155,7 +158,7 @@ type ApprovedImageSpec struct {
 	// +required
 	// +kubebuilder:validation:XValidation:rule="self == oldSelf",message="Value is immutable"
 	// +kubebuilder:validation:XValidation:rule="self.matches(r'.*@sha256:.*')",message="Image must be provided with a digest"
-	Reference *string `json:"image"`
+	Reference string `json:"image"`
 }
 
 // ApprovedImageStatus defines the observed state of ApprovedImage.

@@ -3,10 +3,9 @@
 //
 // SPDX-License-Identifier: MIT
 
-use chrono::Utc;
 use compute_pcrs_lib::Pcr;
 use http::{Method, Request, Response, StatusCode};
-use k8s_openapi::api::core::v1::ConfigMap;
+use k8s_openapi::{api::core::v1::ConfigMap, chrono::Utc};
 use kube::{Client, client::Body, error::ErrorResponse};
 use operator::RvContextData;
 use serde::Serialize;

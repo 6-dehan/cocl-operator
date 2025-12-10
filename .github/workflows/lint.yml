@@ -50,7 +50,7 @@ jobs:
       - name: "cargo clippy (warnings)"
         run: cargo clippy --all-targets -- -D warnings
       - name: "gofmt (check)"
-        run: gofmt -l .
+        run: if [ -n "$(gofmt -l .)" ]; then exit 1; fi
       - name: "go vet"
         run: go vet ./...
       - name: "Ensure Rust & Go conditions definitions use same strings"

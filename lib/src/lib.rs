@@ -10,9 +10,9 @@ pub use kopium::approvedimages::*;
 pub use kopium::machines::*;
 pub use kopium::trustedexecutionclusters::*;
 
-use chrono::Utc;
 use conditions::*;
 use k8s_openapi::apimachinery::pkg::apis::meta::v1::{Condition, Time};
+use k8s_openapi::chrono::Utc;
 
 #[macro_export]
 macro_rules! update_status {

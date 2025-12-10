@@ -127,7 +127,7 @@ clean:
 
 fmt-check:
 	cargo fmt -- --check
-	gofmt -l .
+	if [ "$$(gofmt -l .)" ]; then exit 1; fi
 
 clippy: crds-rs
 	cargo clippy --all-targets --all-features -- -D warnings
@@ -146,7 +146,7 @@ test: crds-rs
 test-release: crds-rs
 	cargo test --workspace --bins --release
 
-integration-tests: trusted-cluster-gen
+integration-tests: generate trusted-cluster-gen
 	RUST_LOG=info cargo test --test trusted_execution_cluster --test attestation \
 		--features virtualization -- --no-capture  --test-threads=1
 
