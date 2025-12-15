@@ -427,7 +427,7 @@ dependencies = [
 [[package]]
 name = "compute-pcrs-lib"
 version = "0.1.0"
-source = "git+https://github.com/trusted-execution-clusters/compute-pcrs#08e561cf527c3e328f2aab7262d34a66cac06fa3"
+source = "git+https://github.com/trusted-execution-clusters/compute-pcrs#1e7b9f74206e436d1426c335e30b2f1a6bd1681e"
 dependencies = [
  "anyhow",
  "glob",
@@ -1794,9 +1794,9 @@ dependencies = [
 
 [[package]]
 name = "k8s-openapi"
-version = "0.26.0"
+version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d13f06d5326a915becaffabdfab75051b8cdc260c2a5c06c0e90226ede89a692"
+checksum = "06d9e5e61dd037cdc51da0d7e2b2be10f497478ea7e120d85dad632adb99882b"
 dependencies = [
  "base64 0.22.1",
  "chrono",
